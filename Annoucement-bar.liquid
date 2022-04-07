@@ -1,0 +1,104 @@
+<!-- announcement-bar.liquid
+
+*********   THIS CODE ID USED FOR [ Annoucement bar ]  *********
+
+ -->
+ 
+
+{%- if section.settings.enable -%}
+<style>
+  .announcement-bar {    
+    position: relative;
+    z-index: 2;
+    display: none
+  }
+  
+  
+
+  .js-ab-close {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer
+  }
+  .announcement-bar .announce-sale {
+   height: 26px;
+   line-height: 26px;
+   border-radius: 2px;
+   display: inline-block;
+   margin: 0 7px;
+   padding: 0 7px;
+  }
+  .announcement-bar a{
+    line-height:1.1;
+    border-bottom:2px solid transparent;
+    text-decoration: none;
+    padding: 2px 0;
+    margin-top: 1px; 
+    color: rgb(93, 93, 93);
+    font-feature-settings: "lnum"!important;
+  }
+   
+   
+  @media (max-width:767px){
+    .announcement-bar {
+      line-height:1;
+      padding: 0 10px;
+    } 
+    .js-ab-close{
+      right: 0;
+      top:2px;
+    }
+    .js-ab-close i{
+      font-size: 12px;
+    }
+  }
+</style>
+<!-- announcement-bar.liquid -->
+<div class="announcement-bar js-announcement-bar " 
+     style="background:{{section.settings.background}};
+            color:{{section.settings.text}}">
+  <div class="container">
+    <div class="row">
+      <div class="info col-6"> 
+          {{section.settings.announcement}}
+      </div>
+      <div class="language col-6"> 
+          {% include 'language' %} EN
+      </div>
+    </div> 
+  </div> 
+</div>
+{%- endif -%}
+{% schema %}
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#90d2d4"
+      },
+      {
+        "type": "color",
+        "id": "text",
+        "label": "Text color",
+        "default": "#fff"
+      },
+       
+      {
+        "type": "textarea",
+        "id": "announcement",
+        "label": "Announcement",
+    "default":"SALE 20% off all. Use code <span style=\"padding: 0 4px;background-color: #222222;color: #ffffff\">OFF20%<\/span>\n<a href=\"\/collections\/all\">Shop now<\/a>"
+      }
+  ]
+  }
+{% endschema %}
